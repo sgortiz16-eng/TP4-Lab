@@ -5,6 +5,7 @@
 package Clases;
 
 import java.util.HashSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -124,10 +125,33 @@ public class AltaAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtfApellidoActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+        if (jtfLegajo.getText().isBlank() || jtfNombre.getText().isBlank() || jtfApellido.getText().isBlank()) {
+        JOptionPane.showMessageDialog(this, "¡Llene todos los campos!");
+        return; 
+    }
+
+    
+    try {
         int legajo = Integer.parseInt(jtfLegajo.getText());
         String apellido = jtfApellido.getText();
         String nombre = jtfNombre.getText();
-        listaAlumno.add(new Alumno(legajo,apellido,nombre));
+
+        boolean x = listaAlumno.add(new Alumno(legajo, apellido, nombre));
+        
+        if (x) {
+            JOptionPane.showMessageDialog(this, "¡Alumno cargado con éxito!");
+            jtfLegajo.setText("");
+            jtfApellido.setText("");
+            jtfNombre.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "Este Alumno ya existe");
+        }
+
+    } catch (NumberFormatException m) {
+        JOptionPane.showMessageDialog(this, "Solo números en el campo 'Legajo'");
+        jtfLegajo.setText("");
+    }
+    
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed

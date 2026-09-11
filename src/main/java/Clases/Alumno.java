@@ -48,13 +48,18 @@ public class Alumno {
         this.nombre = nombre;
     }
 
-    public void agregarMateria(Materia materia) {
+    
+    
+
+    public boolean agregarMateria(Materia materia) {
         boolean x = materias.add(materia);
         if (x) {
             System.out.println("Alumno inscripto con extito en :"+ materia.getNombre());
         }else{
             System.out.println("El alumno "+ this.nombre + " "+ this.apellido+" ya se encuentra inscripto en la materia: "+ materia.getNombre());
+            
         }
+        return x;
     }
 
     @Override

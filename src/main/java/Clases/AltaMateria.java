@@ -5,6 +5,7 @@
 package Clases;
 
 import java.util.HashSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -76,7 +77,7 @@ public class AltaMateria extends javax.swing.JInternalFrame {
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jtfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -143,10 +144,32 @@ public class AltaMateria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+        if (jtfCodigo.getText().isBlank() || jtfNombre.getText().isBlank() || jtfAño.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this, "Llene todos los campos");
+            return;
+        }
+        try{
         int codigo = Integer.parseInt(jtfCodigo.getText());
         String nombre = jtfNombre.getText();
         int año = Integer.parseInt(jtfAño.getText());
-        listaMateria.add(new Materia(codigo,nombre,año));
+        
+        boolean x = listaMateria.add(new Materia(codigo,nombre,año));
+        
+        if (x) {
+            JOptionPane.showMessageDialog(this, "¡Materia cargada con éxito!");
+            jtfCodigo.setText("");
+            jtfAño.setText("");
+            jtfNombre.setText("");    
+        }else{
+            JOptionPane.showMessageDialog(this, "Esta Materia ya existe");
+        }
+        }catch(NumberFormatException m ){
+            JOptionPane.showMessageDialog(this, "Solo numeros en los campos 'Codigo' y 'Año'");
+            jtfCodigo.setText("");
+            jtfAño.setText("");
+        }
+        
+        
     }//GEN-LAST:event_jbGuardarActionPerformed
 
 

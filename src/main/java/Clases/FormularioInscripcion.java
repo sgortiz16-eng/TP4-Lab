@@ -5,6 +5,7 @@
 package Clases;
 
 import java.util.HashSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -108,10 +109,30 @@ public class FormularioInscripcion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbInscribirActionPerformed
+       try {
         Alumno a = (Alumno) jcbAlumnos.getSelectedItem();
         Materia m = (Materia) jcbMaterias.getSelectedItem();
-        a.agregarMateria(m);
+
+        if (a == null || m == null) {
+            throw new NullPointerException("Debe seleccionar un Alumno y una Materia.");
+        }
+
+        if( a.agregarMateria(m)){
+            JOptionPane.showMessageDialog(this, "¡Inscripción realizada con éxito!");
+        }else{
+            JOptionPane.showMessageDialog(this, "Este Alumno ya se encuentra inscripto a esta Materia ");
+        }
+    } catch (NullPointerException ex) {
+        
+        JOptionPane.showMessageDialog(this, "Error: Debe seleccionar un alumno y una materia válidos.");
+    } catch (Exception ex) {
+        
+        JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + ex.getMessage());
+    }
+    
+    
     }//GEN-LAST:event_jbInscribirActionPerformed
+    
     public void llenarComboBox() {
         for (Alumno alumno : listaAlumno) {
             jcbAlumnos.addItem(alumno);
