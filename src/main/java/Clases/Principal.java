@@ -4,6 +4,8 @@
  */
 package Clases;
 
+import java.util.HashSet;
+
 /**
  *
  * @author sgort
@@ -12,9 +14,9 @@ public class Principal extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Principal.class.getName());
 
-    /**
-     * Creates new form Principal
-     */
+    public static HashSet<Alumno> listaAlumno = new HashSet<>();
+    public static HashSet<Materia> listaMateria = new HashSet<>();
+    
     public Principal() {
         initComponents();
     }
@@ -28,7 +30,7 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jdpEscritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMAlumnos = new javax.swing.JMenu();
         jMenuItemAltaAlumnos = new javax.swing.JMenuItem();
@@ -41,14 +43,14 @@ public class Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Principal");
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jdpEscritorioLayout = new javax.swing.GroupLayout(jdpEscritorio);
+        jdpEscritorio.setLayout(jdpEscritorioLayout);
+        jdpEscritorioLayout.setHorizontalGroup(
+            jdpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 563, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jdpEscritorioLayout.setVerticalGroup(
+            jdpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 410, Short.MAX_VALUE)
         );
 
@@ -85,11 +87,11 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jdpEscritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jdpEscritorio)
         );
 
         pack();
@@ -97,29 +99,33 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemAltaAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAltaAlumnosActionPerformed
-        // TODO add your handling code here:
-        AltaAlumno ventana = new AltaAlumno();
-        jDesktopPane1.add(ventana);
-        
+        jdpEscritorio.removeAll();
+        jdpEscritorio.repaint();
+        AltaAlumno ventana = new AltaAlumno(listaAlumno);
         ventana.setVisible(true);
+        jdpEscritorio.add(ventana);
+        jdpEscritorio.moveToFront(ventana);
+       
         
         
     }//GEN-LAST:event_jMenuItemAltaAlumnosActionPerformed
 
     private void jMenuItemAltaMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAltaMateriaActionPerformed
-        // TODO add your handling code here:
-         AltaMateria ventana = new AltaMateria();
-        jDesktopPane1.add(ventana);
-        
+        jdpEscritorio.removeAll();
+        jdpEscritorio.repaint();
+        AltaMateria ventana = new AltaMateria(listaMateria);
         ventana.setVisible(true);
+        jdpEscritorio.add(ventana);
+        jdpEscritorio.moveToFront(ventana);
     }//GEN-LAST:event_jMenuItemAltaMateriaActionPerformed
 
     private void jMenuItemFormRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormRegistroActionPerformed
-        // TODO add your handling code here:
-         FormularioInscripcion ventana = new FormularioInscripcion();
-        jDesktopPane1.add(ventana);
-        
+        jdpEscritorio.removeAll();
+        jdpEscritorio.repaint();
+        FormularioInscripcion ventana = new FormularioInscripcion(listaAlumno,listaMateria);
         ventana.setVisible(true);
+        jdpEscritorio.add(ventana);
+        jdpEscritorio.moveToFront(ventana);
     }//GEN-LAST:event_jMenuItemFormRegistroActionPerformed
 
     /**
@@ -148,7 +154,6 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMAlumnos;
     private javax.swing.JMenu jMMateria;
     private javax.swing.JMenuBar jMenuBar1;
@@ -157,5 +162,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemFormRegistro;
     private javax.swing.JMenu jMenuRegistro;
     private javax.swing.JMenu jMenuSalir;
+    private javax.swing.JDesktopPane jdpEscritorio;
     // End of variables declaration//GEN-END:variables
 }
