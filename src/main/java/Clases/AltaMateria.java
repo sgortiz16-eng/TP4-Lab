@@ -4,17 +4,18 @@
  */
 package Clases;
 
+import java.util.HashSet;
+
 /**
  *
  * @author sgort
  */
 public class AltaMateria extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form AltaMateria
-     */
-    public AltaMateria() {
+   private HashSet<Materia> listaMateria;
+    public AltaMateria(HashSet lista) {
         initComponents();
+        listaMateria = lista;
     }
 
     /**

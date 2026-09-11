@@ -4,17 +4,20 @@
  */
 package Clases;
 
+import java.util.HashSet;
+
 /**
  *
  * @author sgort
  */
 public class FormularioInscripcion extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form FormularioInscripcion
-     */
-    public FormularioInscripcion() {
+    private HashSet<Alumno> listaAlumno;
+    private HashSet<Materia> listaMateria;
+    public FormularioInscripcion(HashSet x, HashSet y) {
         initComponents();
+        listaAlumno = x;
+        listaMateria = y;
     }
 
     /**
